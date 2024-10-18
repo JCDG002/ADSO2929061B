@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <style> 
+       main section {  
+          width: 500px;   /* Se arregla contenedor , tema de especifidad, Posada. */
+       }
+       div.jungle {
+          background: url(images/DKMundo.png) ;
+          margin: 20px auto;
+          border-radius: 4px;
+          height: 400px;
+          width: 500px;
+       }
+       section img.dk-title {
+           position: relative;
+           margin: 10px ;
+           top: -80px;
+           animation: 3s animDonkeyTitle linear infinite;
+       }
+       section img.dk {
+           position: relative;
+           top: 150px;
+           animation: 2s animDonkey linear infinite;
+       }
+       section img.dkplane {
+           position: relative;
+           top: -75px;
+           animation: 4s animDonkeyPlane linear infinite;
+       }
+       section img.ratadk {
+           margin: 10px auto;
+           position: relative;
+           left: 380px;
+           animation: 1s animRatDonkey linear infinite;
+       }
+
+       @keyframes animDonkeyTitle {
+           0% { left: 0px; transform: rotate(0deg);}
+           50% { left: 0px; transform: rotate(0deg);}
+           55% { left: 0px; transform: rotate(0deg);}
+           58% { left: 0px; transform: rotate(0deg);}
+           100% { left: 0px; transform: rotateY(360deg); }
+       }
+
+       @keyframes animDonkey {
+           0% { left: -180px; transform: rotate(0deg);}
+           50% { left: 0px; transform: rotate(0deg);}
+           55% { top: 100px; transform: rotate(0deg);}
+           58% { left: 0px; transform: rotate(0deg);}
+           100% { left: -180px; transform: rotate(360deg); }
+       }
+
+       @keyframes animDonkeyPlane {
+           0% { left: -300px; transform: rotate(0deg);}
+           50% { left: 0px; transform: rotate(0deg);}
+           55% { left: 0px; transform: rotate(0deg);}
+           58% { left: 0px; transform: rotate(0deg);}
+           100% { left: -300px; transform: rotate(0deg); }
+       }
+
+       @keyframes animRatDonkey {
+           0% { top: 50px; transform: rotate(0deg);}
+           50% { bottom: 10px; transform: rotate(0deg);}
+           55% { right: 0px; transform: rotate(0deg);}
+           58% { right: 0px; transform: rotate(0deg);}
+           100% { top: 0px; transform: rotate(0deg); }
+       }    
+     
+ 
+    </style>
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html"> <!-- ../para devolverme  -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>Animations</h1>
+            <h2>Permite  a un elemento cambiar gradualemente de un estilo a otro</h2>
+        </header>
+        <section>
+            <h3>Example:</h3>
+            <div class="jungle">
+              <img class="dk-title"  src="images/Donkey_Kong_Country_Logo.png" width="100px">
+              <img class="dk"  src="images/DonkeyKong.png" width="300px">
+              <img class="dkplane" src="images/DonkeyKongPlane.png" width="70px">
+              <img class="ratadk" src="images/DonkeykongRata.webp" width="100px">
+            </div>
+        </section>  
+    </main>  
+</body>
+</html>

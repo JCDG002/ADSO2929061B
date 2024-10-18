@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challegue</title>
+    <!-- <link rel="stylesheet" href="css/challengue.css"> -->
+    <style>
+        body {
+            background-color: #17A053;
+            border: 5px #fff solid;
+            margin: 1px;
+        }
+        /*****************imagen sprite header******************/
+        div.sprite {
+            /*border: 2px red solid;             1. comentar y descomentar border para observar contenedores o bloques */
+            margin: 1rem auto;                  /*Establece el margen para los cuatro lados, y el auto hace que un elemento con un ancho definido tenga márgenes automático (esto incluye derecha e izquierda) lo cual produce que el bloque o el contenedor se centre. */
+            height: 190px;
+            width: 190px;
+            background: url(images/spriteweb.png);
+            background-position: -10px -400px; /*Primer valor es eje X y segundo valor es  eje Y */
+        }
+        /***************seccion nav*********************/
+        nav {
+            /*border: 2px red solid;             2. comentar y descomentar border para observar contenedores o bloques */
+            display: flex;
+            justify-content: center;  /* Esta propiedad es para mover los items o las letras o el contenido, con valor center es para centrar los items, No funciona sin display flex: ; */
+            margin: 20px auto;        /*margen: para los cuatro lados, y auto: para centrar el contenedor o se usa para centrar horizontalmente un contenedor o bloque */
+            width: 950px;
+            gap: 2rem;
+
+                a:is(:link, :visited) {
+                    background-color: #0008;
+                    border-bottom: 5px white solid;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    padding: 20px;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: all 0.4s ease-in;
+                    width: 20%;
+                }
+                a:is(:hover) {
+                background-color: #000;
+                color: #ccc;
+                border-bottom: 5px yellow solid;
+                }
+       }
+        /****************Seccion sprites***********************/
+        main {
+            /*border: 2px red solid;      3. comentar y descomentar border para observar contenedores o bloques */
+        }
+        section.sections-sprites {
+            /*border: 2px red solid;      4.comentar y descomentar border para observar contenedores o bloques */
+            margin: 10px auto;
+            width: 950px;
+            display: flex;
+            flex-wrap: wrap;     /* flex-wrap: especifica si los elementos "hijos" son obligados a permanecer en una misma línea, no funciona sin el display flex */
+            background-color: #3339;
+        }
+        div.box1 {
+            border: 2px #fff9 solid;
+            margin: 10px auto;
+            /* text-align: center;
+            font-size: large; */
+            height: 190px;
+            width: 300px;
+            display: flex;            /* Centramos los contenidos display: flex; y justify-content: center; Es con el padre*/
+            justify-content: center;  /* Este es importantisimo se centra con el padre los hijos enlaces */
+       
+                a:is(:link, :visited) {
+                    /*border: 2px red solid;     5. comentar y descomentar border para observar contenedores o bloques */
+                    /*margin: 3px;               6. comentar y descomentar este margen*/
+                    height: 20px;
+                    width: 300px;
+                    background-color: #fff5;
+                    color: #000;
+                    font-size: 1.3rem;
+                    font-weight: 900;
+                    padding: 20px;     
+                    text-decoration: none;
+                    text-align: center;
+                    transition: all 0.4s ease-in;
+                }
+                a:is(:hover) {
+                    background-color: #fffa;
+                    color: #000;
+                }
+        }
+        div.sprite-1 {             /* Se independiza con diferentes clases por si se quiere poner diferentes imagenes */
+            background: url(images/spriteweb.png);
+            background-position: -480px -10px;
+        }
+        div.sprite-2 {
+            background: url(images/spriteweb.png);
+            background-position: -480px -10px;
+        }
+        div.sprite-3 {
+            background: url(images/spriteweb.png);
+            background-position: -480px -10px;
+        }
+
+        /****************Seccion sprites textos*********Quedamos aqui***************/
+        section.sections-sprites-text {
+            border: 2px #17A053 solid;      /*7. ERROR REVISAR, comentar y descomentar border para observar contenedores o bloques */
+            margin: 30px auto;
+            width: 950px;
+            background-color: #3339;
+            
+        }
+            div.box2 {
+                /*border: 2px red solid;   8. comentar y descomentar border para observar contenedores o bloques */
+                margin: 10px auto;  
+                display: flex; 
+                flex-wrap: wrap;  /*A todos mis elementos hijos que tenga centremelo, no funciona sin el display felx */
+                height: 220px;
+                width: 930px;
+                background-color: #fff;
+            }
+                div.box-logo-sprite1 {
+                    /*border: 2px red solid;     9. comentar y descomentar border para observar contenedores o bloques */
+                    background: url(images/spriteweb.png);
+                    background-position: -290px -490px;
+                    position: relative;
+                    top: 45px;
+                    left: 20px; 
+                    height: 100px;       
+                    width: 100px;
+                    margin: 10px auto; 
+                } 
+                div.box-text-sprite2 { 
+                    /*border: 2px red solid;   10. comentar y descomentar border para observar contenedores o bloques */
+                    margin: 10px auto;  
+                    font-size: 1rem;       
+                    line-height: 1.7rem;     
+                    word-spacing: 0.5rem;
+                    position: relative;
+                    left: 20px;
+                    height: 200px; 
+                    width: 500px;            /* TERMINE AQUI PSEUDO CLASES PARA LA LETRA CAMBIE A VERDE */
+
+                    p {
+                        /* border: 2px red solid;  */
+                        position: relative;
+                        bottom: 15px;
+                        left: 10px;
+                    }
+                    p:is(:hover) {
+                        color: green;
+                    }
+                }
+                div.box-logo-sprite3 {
+                    /* border: 2px red solid;    11. comentar y descomentar border para observar contenedores o bloques */
+                    background: url(images/spriteweb.png);
+                    background-position: -40px -190px;
+                    height: 200px; 
+                    width: 200px; 
+                    margin: 10px auto; 
+                }
+
+        /*************************footer************************/
+        footer {                       /*Aqui el codigo queda mas ordenado un ejemplo*/
+            /*border: 2px red solid;       12. comentar y descomentar border para observar contenedores o bloques */
+            margin: 5px auto;
+        }
+            div.sprites-footer {    
+                /* border: 2px red solid;   13. comentar y descomentar border para observar contenedores o bloques */
+                margin: 5px auto;         /*margen: Margen para los cuatro lados, y auto: para centrar el contenedor*/
+                height: 260px;
+                width: 950px;
+                background-color: #fff;
+            }
+                div.sprites-logo-footer {
+                    /*border: 2px red solid;  14. comentar y descomentar border para observar contenedores o bloques */
+                    margin: 5px auto;    /*Pongame margen y luego centreme bloque o contenedor con auto*/
+                    height: 170px;
+                    width: 280px;
+                    background: url(images/spriteweb.png);
+                    background-position: 305px -430px;
+                }
+                div.enlaces-footer {
+                    /*border: 2px red solid;  15. comentar y descomentar border para observar contenedores o bloques */
+                    margin: 5px auto;         /* margen y Centramos contenedor */
+                    width: 930px;
+                    display: flex;            /* Centramos los contenidos display: flex; y justify-content: center; Es con el padre*/
+                    justify-content: center;
+                    gap: 2rem;
+
+                        a:is(:link, :visited) {
+                           /* border: 2px red solid;  16. comentar y descomentar border para observar contenedores o bloques */
+                            margin: 3px;
+                            width: 200px;      /*Es lo mismo que 20%, 20% = 200px */
+                            background-color: #ccc;
+                            color: #000;
+                            font-size: 1.2rem;
+                            padding: 15px;
+                            text-decoration: none;
+                            text-align: center;
+                            transition: all 0.4s ease-in;
+                        }
+                        a:is(:hover) {
+                            background-color: #333;
+                            color: #ccc;
+                            border-bottom: 5px green solid;
+                        }
+                }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="sprite"></div>
+    </header>
+    <nav>
+        <a href="">INICIO</a>
+        <a href="">NOSOTROS</a>
+        <a href="">PORTAFOLIO</a>
+        <a href="">SERVICIOS</a>
+        <a href="">CONTACTO</a>
+    </nav>
+    <main>
+        <section class="sections-sprites">
+            <div class="box1 sprite-1">
+                <a href="">Sprite 01</a>
+            </div>
+            <div class="box1 sprite-2">
+                <a href="">Sprite 02</a>
+            </div>
+            <div class="box1 sprite-3">
+                <a href="">Sprite 03</a>
+            </div>
+        </section>
+        <section class="sections-sprites-text">
+            <div class="box2 text-1">
+                <div class="box-logo-sprite1"></div>
+                <div class="box-text-sprite2">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum cum nam tempore optio modi quibusdam dolorem perferendis in eligendi est ipsam, dignissimos dicta quasi error hic suscipit facilis laborum reiciendis. Sed delectus asperiores, ullam, hic esse, blanditiis nostrum expedita consequuntur eaque beatae natus recusandae cumque. Ullam quia minima ipsa consectetur, ex, natus libero similique iusto repellat est quibusdam quos!</p>
+                </div>
+                <div class="box-logo-sprite3"></div>
+            </div>
+            <div class="box2 text-2">
+                <div class="box-logo-sprite1"></div>
+                <div class="box-text-sprite2">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum cum nam tempore optio modi quibusdam dolorem perferendis in eligendi est ipsam, dignissimos dicta quasi error hic suscipit facilis laborum reiciendis. Sed delectus asperiores, ullam, hic esse, blanditiis nostrum expedita consequuntur eaque beatae natus recusandae cumque. Ullam quia minima ipsa consectetur, ex, natus libero similique iusto repellat est quibusdam quos!</p>
+                </div>
+                <div class="box-logo-sprite3"></div>
+            </div>
+            <div class="box2 text-3">
+                <div class="box-logo-sprite1"></div>
+                <div class="box-text-sprite2">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum cum nam tempore optio modi quibusdam dolorem perferendis in eligendi est ipsam, dignissimos dicta quasi error hic suscipit facilis laborum reiciendis. Sed delectus asperiores, ullam, hic esse, blanditiis nostrum expedita consequuntur eaque beatae natus recusandae cumque. Ullam quia minima ipsa consectetur, ex, natus libero similique iusto repellat est quibusdam quos!</p>
+                </div>
+                <div class="box-logo-sprite3"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="sprites-footer">
+            <div class="sprites-logo-footer"></div>
+            <!-- <div class="sprites-logo-footer"></div> -->
+            <div class="enlaces-footer">
+                <a href="">INICIO</a>
+                <a href="">NOSOTROS</a>
+                <a href="">PORTAFOLIO</a>
+                <a href="">SERVICIOS</a>
+                <a href="">CONTACTO</a>
+            </div> 
+        </div>
+        
+    </footer>
+</body>
+</html>
