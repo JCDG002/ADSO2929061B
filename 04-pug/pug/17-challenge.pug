@@ -15,3 +15,7 @@ html(lang="en")
                 h1 17 Challange
                 p Provides an exercise to apply the learned concepts.
             section
+               h3 Challenge
+                each val, index in ['rgb(0,255,255)', 'rgb(25,230,255)', 'rgb(50,205,255)', 'rgb(75,180,255)', 'rgb(100,155,255)', 'rgb(125,125,255)', 'rgb(150,100,255)', 'rgb(175,75,255)', 'rgb(200,50,255)', 'rgb(225,25,255)']
+                    div(style="margin-bottom: 2px; background-color:" + val)
+                        span(style="background-color: #0009; color: #fff; display: flex; width: 30px; justify-content: center") #{index + 1}
