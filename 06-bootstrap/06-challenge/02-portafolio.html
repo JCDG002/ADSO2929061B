@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+      container {
+        border: 1px solid black;
+      }
+
+      row {
+        max-height: 200px;
+      }
+
+      img {
+        max-width: 200px;
+        height: 200px;
+        /* margin: 10 auto; */
+        /* border: 10px; */
+        padding-left: 10px;
+      }
+
+      .comp {
+        transform: scaleX(-1);
+        width: 500px;
+      }
+
+      div {
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+      }
+
+      .c1 {
+        color: white;
+      }
+
+      .c2 {
+        color: darkblue;
+      }
+
+      .c3 {
+        justify-content: center;
+        align-items: center;
+        min-height: 250px;
+      }
+
+      .p {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .cuadrado {
+        background-color: #f0f0f0;
+        padding: 20px;
+        border: 1px solid #ddd;
+      }
+
+      .row {
+        margin-bottom: 2px;
+        /* height: 200px; */
+      }
+
+      .quad {
+        width: 200px;
+        height: 150px;
+        /* background-color: #f2f2f2; */
+        margin: 10px;
+        margin: 10px;
+        text-align: left;
+        font-size: 14px;
+        color: #fff;
+        padding: 15px;
+      }
+
+      .quad img {
+        object-fit: cover;
+        /* width: 0%; */
+        height: 25%;
+        align-items: left;
+        /* padding-top: 10px; */
+      }
+      #navbar {
+        display: block; /* mostrar el navbar por defecto */
+      }
+
+      #navbar.hidden {
+        display: none; /* esconder el navbar cuando se hace clic en el botón */
+      }
+      .navbar-nav a {
+        color: darkblue;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR---------------------------------------------------------------------- -->
+    <nav
+      class="navbar navbar-expand-lg bg-body-tertiary bg-secondary"
+      id="home"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#contact">
+          <img src="img/logo02.png" alt="logo01" style="height: 50px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto" id="menu" style="color: blue">
+            <a class="nav-link" aria-current="page" href="#home">HOME</a>
+            <a class="nav-link" href="#about">ABOUT</a>
+            <a class="nav-link" href="#service">SERVICES</a>
+            <a class="nav-link" href="#projects">PROJECTS</a>
+            <a class="nav-link" href="#contact">CONTACT</a>
+            <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- HOME-------------------------------------------------------------------- -->
+    <div class="container-fluid">
+      <div class="row 1">
+        <div class="c1 col-sm-12 col-md-6 bg-primary p-4">
+          <h1>HOME</h1>
+          <p>
+            HOME HELLO I AM: Juan Carlos Duque Giraldo Professional Freelancer
+            Web Designer Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Fugit ducimus minima dolorem tempora nobis debitis mollitia
+            illum cumque dignissimos quisquam.
+          </p>
+        </div>
+        <!-- --PIC-HOME-------------------------------------------------------------- -->
+        <div class="col-sm-12 col-md-6 bg-info">
+          <img
+            src="img/bj001.png"
+            class="rounded mx-auto d-block"
+            style="height: 300px; min-width: 300px"
+          />
+        </div>
+      </div>
+      <!-- -----PIC-ABOUT----------------------------------------------------------- -->
+      <div class="row 1" id="about">
+        <div class="col-sm-12 col-md-6">
+          <br />
+          <img
+            src="img/bj03.png"
+            alt=""
+            class="rounded mx-auto d-block"
+            style="transform: scaleX(-1); height: 350px"
+          />
+        </div>
+        <!-- ------ABOUT---------------------------------------------------------- -->
+        <div class="c2 col-sm-12 col-md-6">
+          <br />
+          <h1>ABOUT</h1>
+          <p>
+            WHY YOU HIRE ME: Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Fugit ducimus minima dolorem tempora nobis debitis mollitia
+            illum
+          </p>
+          <img src="img/competences.jpg" alt="" class="comp img-fluid p-4" />
+        </div>
+        <a href="#home" style="color: blue; padding: 20px">HOME</a>
+      </div>
+      <!-- --------SERVICE-|-PROVIDE-------------------------------------------------------- -->
+
+      <div class="row 1" id="service">
+        <div class="c2 col-sm-12 col-md-12 col-lg-12 bg-info p-4">
+          <br />
+          <h1>SERVICE | PROVIDE</h1>
+          <br />
+          <div class="container img-fluid">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 p-4">
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i01.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i02.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i03.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i04.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i05.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="quad bg-primary">
+                  <img src="img/i06.png" alt="" ; />
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veritatis officiis facilis beatae ut eum ad ipsa.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#home" style="color: white; font-weight: bold">HOME</a>
+        </div>
+      </div>
+
+      <!-- ----LATEST-PROJECTS------------------------------------------------------------ -->
+      <div class="c2 row 1 p-4" id="projects">
+        <h1>LATEST PROJECTS</h1>
+        <div class="container-lg text-center">
+          <div class="row gx-4 g-2 row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div class="col">
+              <img src="img/d01.jpg" alt="gallery" class="gallery-item" />
+            </div>
+            <div class="col">
+              <img src="img/d02.jpg" alt="gallery" class="gallery-item" />
+            </div>
+            <div class="col">
+              <img src="img/d03.jpg" alt="gallery" class="gallery-item" />
+            </div>
+            <div class="col">
+              <img
+                src="img/d04.jpg"
+                alt="gallery"
+                class="gallery-item"
+                style="width: 300px"
+              />
+            </div>
+            <div class="col">
+              <img
+                src="img/d05.jpg"
+                alt="gallery"
+                class="gallery-item justify-content-flex-end"
+              />
+            </div>
+            <div class="col">
+              <img
+                src="img/d06.jpg"
+                alt="gallery"
+                class="gallery-item"
+                style="width: 300px"
+              />
+            </div>
+          </div>
+        </div>
+        <a href="#home" style="color: blue; text-align: left; padding-top: 10px"
+          >HOME</a
+        >
+      </div>
+      <!-- ------CONTACT---------------------------------------------------------- -->
+      <!-- <br /> -->
+      <div
+        class="c1 row 1 fw-bold bg-primary justify-items-center text-center p-4"
+        id="contact"
+      >
+        <h1>CONTACT</h1>
+        <div class="row">
+          <h5>JUAN CARLOS DUQUE GIRALDO</h5>
+          <h5>jon710505@gmail.com</h5>
+        </div>
+        <div class="text-center">
+          <img
+            class="img-fluid"
+            src="img/social4.png"
+            style="background-color: transparent"
+          />
+        </div>
+        <div class="row">
+          <h5>© Derechos Reservados 2025</h5>
+        </div>
+        <a href="#home" style="color: white; text-align: left">HOME</a>
+      </div>
+
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+      ></script>
+      <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          let navbarToggler = document.querySelector(".navbar-toggler");
+          let navbarCollapse = document.querySelector("#navbarNavAltMarkup");
+          let navLinks = document.querySelectorAll(".navbar-nav a");
+
+          navLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              if (navbarCollapse.classList.contains("show")) {
+                navbarToggler.click(); // Simula un clic en el botón para cerrar el menú
+              }
+            });
+          });
+        });
+      </script>
+    </div>
+  </body>
+</html>

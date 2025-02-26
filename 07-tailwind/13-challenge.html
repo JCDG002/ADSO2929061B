@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+      .matrix-text {
+        color: #00ff41;
+        text-shadow: 0 0 8px #00ff4140;
+        font-family: "Ubuntu Mono", monospace;
+      }
+      .matrix-bg {
+        background: radial-gradient(circle, #0a2e0a 0%, #000 70%);
+      }
+      .page-target {
+        display: none;
+      }
+      .page-target:target {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="matrix-bg">
+    <main id="content" class="flex flex-col">
+      <!-- Página Home -->
+      <div
+        id="page1-Home"
+        class="page-target container m-auto h-auto w-96 rounded-3xl my-3 bg-black/90 p-10 matrix-text border-2 border-green-500/50"
+      >
+        <div class="rounded-3xl h-72 w-96 relative bottom-10 right-10">
+          <img
+            src="images/02.jpg"
+            class="rounded-t-3xl object-cover h-72 w-96 border-2 border-green-500/30"
+          />
+        </div>
+        <div class="rounded-full h-14 w-14 relative bottom-8 left-[119px]">
+          <img
+            src="images/13.jpg"
+            class="aspect-square-t-3xl object-cover h-14 w-14"
+          />
+        </div>
+        <p
+          class="uppercase relative bottom-8 tracking-widest text-4xl font-bold text-center"
+        >
+          MATRIX
+        </p>
+        <p
+          class="lowercase relative bottom-6 text-lg text-center leading-relaxed"
+        >
+          The Matrix is a simulated reality created by machines to subdue
+          humanity while harvesting their bioelectric energy. A dystopian future
+          where perception is manipulated through neural-interactive simulation,
+          hiding the true nature of a world ruled by artificial intelligence.
+        </p>
+        <a
+          href="#page2-chronology"
+          class="p-4 relative top-1 left-20 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          Chronology
+        </a>
+      </div>
+
+      <!-- Sección Chronology -->
+      <div
+        id="page2-chronology"
+        class="page-target container m-auto h-auto w-96 rounded-3xl my-3 bg-black/90 p-10 matrix-text border-2 border-green-500/50"
+      >
+        <a
+          href="#page1-Home"
+          class="border p-1 relative bottom-6 right-7 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          ⬅
+        </a>
+        <p
+          class="uppercase mb-5 relative bottom-6 tracking-widest text-4xl font-bold text-center"
+        >
+          Chronology
+        </p>
+        <div class="mt-8 relative h-96 bottom-7 overflow-auto">
+          <div class="relative rounded-xl p-4">
+            <div
+              class="border-2 overflow-visible relative max-w-sm mx-auto bg-black shadow-lg rounded-xl flex items-center gap-6"
+            >
+              <img
+                class="absolute -left-6 w-28 h-28 rounded-full shadow-lg"
+                src="images/03.jpg"
+              />
+              <div class="flex flex-col py-5 pl-24">
+                <strong class="text-gray-100 text-sm font-medium"
+                  >Matrix I</strong
+                >
+                <span class="text-indigo-400 text-sm font-medium"
+                  >The Matrix</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="relative rounded-xl p-4">
+            <div
+              class="border-2 overflow-visible relative max-w-sm mx-auto bg-black shadow-lg rounded-xl flex items-center gap-6"
+            >
+              <img
+                class="absolute -left-6 w-28 h-28 rounded-full shadow-lg"
+                src="images/04.jpg"
+              />
+              <div class="flex flex-col py-5 pl-24">
+                <strong class="text-gray-100 text-sm font-medium"
+                  >Matrix II</strong
+                >
+                <span class="text-indigo-400 text-sm font-medium">Reload</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative rounded-xl p-4">
+            <div
+              class="border-2 overflow-visible relative max-w-sm mx-auto bg-black shadow-lg rounded-xl flex items-center gap-6"
+            >
+              <img
+                class="absolute -left-6 w-28 h-28 rounded-full shadow-lg"
+                src="images/05.jpg"
+              />
+              <div class="flex flex-col py-5 pl-24">
+                <strong class="text-gray-100 text-sm font-medium"
+                  >Matrix III</strong
+                >
+                <span class="text-indigo-400 text-sm font-medium"
+                  >Revolutions</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="relative rounded-xl p-4">
+            <div
+              class="border-2 overflow-visible relative max-w-sm mx-auto bg-black shadow-lg rounded-xl flex items-center gap-6"
+            >
+              <img
+                class="absolute -left-6 w-28 h-28 rounded-full shadow-lg"
+                src="images/06.jpg"
+              />
+              <div class="flex flex-col py-5 pl-24">
+                <strong class="text-gray-100 text-sm font-medium"
+                  >Matrix IV</strong
+                >
+                <span class="text-indigo-400 text-sm font-medium"
+                  >Resurrections</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          href="#page3-characters"
+          class="p-4 relative top-1 left-24 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          Characters
+        </a>
+      </div>
+
+      <!-- Sección Characters -->
+      <div
+        id="page3-characters"
+        class="page-target container m-auto h-auto w-96 rounded-3xl my-3 bg-black/90 p-10 matrix-text border-2 border-green-500/50"
+      >
+        <a
+          href="#page2-chronology"
+          class="border p-1 relative bottom-6 right-7 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          ⬅
+        </a>
+        <p
+          class="uppercase mb-5 relative bottom-6 tracking-widest text-4xl font-bold text-center"
+        >
+          Characters
+        </p>
+        <div class="snap-x relative bottom-6 h-[480px] overflow-auto">
+          <div class="border mb-3 snap-center">
+            <img src="images/07.jpg" />
+            <p class="text-center">Neo</p>
+          </div>
+          <div class="border mb-3 snap-center">
+            <img src="images/08.jpg" />
+            <p class="text-center">Morpheus</p>
+          </div>
+          <div class="border mb-3 snap-center">
+            <img src="images/09.jpg" />
+            <p class="text-center">Trinity</p>
+          </div>
+          <div class="border mb-3 snap-center">
+            <img src="images/10.jpg" />
+            <p class="text-center">Agent Smith</p>
+          </div>
+          <div class="border mb-3 snap-center">
+            <img src="images/11.jpg" />
+            <p class="text-center">Architect</p>
+          </div>
+          <div class="border mb-3 snap-center">
+            <img src="images/12.jpg" />
+            <p class="text-center">Persephone</p>
+          </div>
+        </div>
+        <a
+          href="#page3-platforms"
+          class="p-4 relative top-0 left-20 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          RELEASE
+        </a>
+      </div>
+
+      <!-- Sección RELEASE -->
+      <div
+        id="page3-platforms"
+        class="page-target container m-auto h-auto w-96 rounded-3xl my-3 bg-black/90 p-10 matrix-text border-2 border-green-500/50"
+      >
+        <a
+          href="#page3-characters"
+          class="border p-1 relative bottom-6 right-7 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          ⬅
+        </a>
+        <p
+          class="uppercase mb-5 relative bottom-6 tracking-widest text-4xl font-bold text-center"
+        >
+          RELEASE
+        </p>
+        <div class="relative bottom-7 rounded-xl overflow-auto">
+          <table class="w-full matrix-text border-collapse">
+            <thead class="bg-green-500/10">
+              <tr>
+                <th class="p-4 text-left border-b border-green-500/30">
+                  Movie
+                </th>
+                <th class="p-4 text-left border-b border-green-500/30">
+                  Release Date
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hover:bg-green-500/5">
+                <td class="p-4 border-b border-green-500/30">Matrix</td>
+                <td class="p-4 border-b border-green-500/30">
+                  31 de marzo de 1999
+                </td>
+              </tr>
+              <tr class="hover:bg-green-500/5">
+                <td class="p-4 border-b border-green-500/30">
+                  Matrix Reloaded
+                </td>
+                <td class="p-4 border-b border-green-500/30">
+                  9 de mayo de 2003
+                </td>
+              </tr>
+              <tr class="hover:bg-green-500/5">
+                <td class="p-4 border-b border-green-500/30">
+                  Matrix Revolutions
+                </td>
+                <td class="p-4 border-b border-green-500/30">
+                  5 de noviembre de 2003
+                </td>
+              </tr>
+              <tr class="hover:bg-green-500/5">
+                <td class="p-4">Matrix Resurrections</td>
+                <td class="p-4">22 de diciembre de 2021</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <a
+          href="#page1-Home"
+          class="p-4 relative top-1 left-28 bg-black matrix-text border-2 border-green-500/50 rounded-xl text-lg font-bold hover:bg-green-500/10 transition-all"
+        >
+          Home
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
