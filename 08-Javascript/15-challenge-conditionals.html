@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Widget Clima</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #fff; /* Quita el verde pastel */
+        margin: 0;
+      }
+
+      .search-box {
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: row; /* Cambia a fila */
+        gap: 8px; /* Menor separación */
+        align-items: center; /* Centra verticalmente */
+        justify-content: center;
+      }
+      .search-box input[type="text"] {
+        padding: 8px 10px; /* Más pequeño */
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1em;
+        width: 180px; /* Ajusta el ancho */
+        background: #fff;
+        color: #222;
+        outline: none;
+        box-shadow: none;
+        transition: border 0.2s;
+      }
+      .search-box button {
+        padding: 8px 18px; /* Más pequeño y horizontal */
+        border: none;
+        border-radius: 8px;
+        background: #1976d2;
+        color: #fff;
+        font-size: 1em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: background 0.2s;
+      }
+      .search-box button:hover {
+        background: #115293;
+      }
+
+      .weather-widget {
+        border-radius: 16px;
+        padding: 32px 24px 32px 24px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        text-align: center;
+        width: 520px;
+        min-height: 520px;
+        max-width: 98vw;
+        margin: 24px 0;
+        position: relative;
+        overflow: hidden;
+        background-color: #fff; /* color base por defecto */
+        transition: background 0.4s;
+      }
+      .weather-widget.sunny-bg {
+        background-color: #ffe066;
+      } /* Soleado */
+      .weather-widget.partly-bg {
+        background-color: #b3e5fc;
+      } /* Parcialmente nublado */
+      .weather-widget.cloudy-bg {
+        background-color: #cfd8dc;
+      } /* Nublado */
+      .weather-widget.fog-bg {
+        background-color: #e0e0e0;
+      } /* Niebla */
+      .weather-widget.drizzle-bg {
+        background-color: #b2ebf2;
+      } /* Llovizna */
+      .weather-widget.rain-bg {
+        background-color: #90caf9;
+      } /* Lluvia */
+      .weather-widget.snow-bg {
+        background-color: #f0f4c3;
+      } /* Nieve */
+
+      /* Fondo nocturno: luna y estrellas */
+      .dark-theme {
+        background-color: #1e1e2e;
+        color: #eee;
+      }
+      .dark-theme::before {
+        content: none;
+      }
+
+      /* Fondo diurno: sol y nubes */
+      .light-theme {
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      .light-theme::before {
+        content: none;
+      }
+
+      .weather-info {
+        position: relative;
+        z-index: 1;
+        padding-bottom: 110px;
+        padding-top: 18px;
+      }
+
+      #city-name {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+      }
+
+      #condition-icon {
+        font-size: 2em;
+        margin-bottom: 8px;
+        margin-top: -50px;
+      }
+
+      #temperature {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .info-cards {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin: 18px 0 0 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 32px;
+        z-index: 2;
+        padding: 0 32px; /* <--- padding lateral para separar de los bordes */
+      }
+      .info-card {
+        background: #ffe082;
+        border-radius: 10px;
+        padding: 10px 16px;
+        box-shadow: 0 2px 8px #e91e6340;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 90px;
+      }
+      .info-title {
+        font-size: 0.95em;
+        color: #e91e63;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .info-value {
+        font-size: 1.2em;
+        color: #333;
+        font-weight: bold;
+      }
+      .dark-theme .info-card {
+        background: #333;
+      }
+      .dark-theme .info-title {
+        color: #ffeb3b;
+      }
+      .dark-theme .info-value {
+        color: #fff;
+      }
+
+      /* Asegura espacio para las tarjetas al fondo */
+      .weather-info {
+        padding-bottom: 110px;
+      }
+
+      /* ...iconos... */
+      .wind-icon::before {
+        content: "\u2192";
+        margin-right: 3px;
+      }
+      .rain-icon::before {
+        content: "\u2614";
+        margin-right: 3px;
+      }
+      .snow-icon::before {
+        content: "\u2744";
+        margin-right: 3px;
+      }
+      .cloud-icon::before {
+        content: "\u2601";
+        margin-right: 3px;
+      }
+      .sun-icon::before {
+        content: "\u2600";
+        margin-right: 3px;
+      }
+
+      #condition-reference {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 2;
+        margin: 0;
+      }
+      #condition-icon-big {
+        font-size: 7.5em;
+        margin-bottom: 4px;
+      }
+      #condition-text {
+        font-size: 1.1em;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="weather-widget">
+      <div class="search-box">
+        <div style="position: relative; display: flex; align-items: center">
+          <input
+            type="text"
+            id="city-input"
+            placeholder="Ingresa una ciudad"
+            style="padding-right: 28px"
+          />
+          <span
+            id="clear-input"
+            style="
+              position: absolute;
+              right: 8px;
+              cursor: pointer;
+              font-size: 1.1em;
+              color: #888;
+              user-select: none;
+              display: none;
+            "
+            >✕</span
+          >
+        </div>
+        <button id="search-button">Buscar</button>
+      </div>
+      <div class="weather-info">
+        <h2 id="city-name"></h2>
+        <div id="condition-icon"></div>
+        <p id="city-time"></p>
+        <p id="temperature"></p>
+      </div>
+      <div class="info-cards">
+        <div class="info-card">
+          <span class="info-title">Humedad</span>
+          <span class="info-value" id="humidity-card"></span>
+        </div>
+        <div class="info-card">
+          <span class="info-title">Presión atmosférica</span>
+          <span class="info-value" id="pressure-card"></span>
+        </div>
+        <div class="info-card">
+          <span class="info-title">Velocidad del viento</span>
+          <span class="info-value" id="wind-card"></span>
+        </div>
+      </div>
+      <div id="condition-reference">
+        <span id="condition-icon-big"></span>
+        <span id="condition-text"></span>
+      </div>
+    </div>
+
+    <script>
+      const cityInput = document.getElementById("city-input");
+      const clearInput = document.getElementById("clear-input");
+      const searchButton = document.getElementById("search-button");
+      const weatherWidget = document.querySelector(".weather-widget");
+      const cityNameDisplay = document.getElementById("city-name");
+      const conditionIconDisplay = document.getElementById("condition-icon");
+      const temperatureDisplay = document.getElementById("temperature");
+      const cityTimeDisplay = document.getElementById("city-time");
+
+      // Mostrar clima de Manizales por defecto al cargar
+      window.addEventListener("DOMContentLoaded", () => {
+        fetchWeatherData("Manizales");
+        cityInput.value = "Manizales";
+      });
+
+      searchButton.addEventListener("click", () => {
+        const city = cityInput.value;
+        if (city) {
+          fetchWeatherData(city);
+        }
+      });
+
+      cityInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          searchButton.click();
+        }
+      });
+
+      // Mostrar/ocultar la 'x' según si hay texto
+      cityInput.addEventListener("input", () => {
+        clearInput.style.display = cityInput.value ? "block" : "none";
+      });
+
+      // Borrar el texto al hacer click en la 'x'
+      clearInput.addEventListener("click", () => {
+        cityInput.value = "";
+        clearInput.style.display = "none";
+        cityInput.focus();
+      });
+
+      async function fetchWeatherData(city) {
+        try {
+          // 1. Geocodificación para obtener lat/lon
+          const geoRes = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(
+              city
+            )}`
+          );
+          const geoData = await geoRes.json();
+          if (!geoData.length) throw new Error("Ciudad no encontrada");
+          const lat = geoData[0].lat;
+          const lon = geoData[0].lon;
+          // Extraer ciudad y país
+          const displayNameParts = geoData[0].display_name.split(",");
+          const cityNameOnly = displayNameParts[0].trim();
+          const countryName =
+            displayNameParts[displayNameParts.length - 1].trim();
+
+          // 2. Consulta a Open-Meteo
+          const weatherRes = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relative_humidity_2m,surface_pressure&timezone=auto&language=es`
+          );
+          const weatherData = await weatherRes.json();
+
+          // 3. Procesar datos
+          const current = weatherData.current_weather;
+          // Buscar humedad y presión para la hora más cercana
+          const nowHour = current.time;
+          let closestIndex = 0;
+          let minDiff = Infinity;
+          weatherData.hourly.time.forEach((t, i) => {
+            const diff = Math.abs(
+              new Date(t).getTime() - new Date(nowHour).getTime()
+            );
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIndex = i;
+            }
+          });
+          const humidity =
+            weatherData.hourly.relative_humidity_2m[closestIndex];
+          const pressure = weatherData.hourly.surface_pressure[closestIndex];
+
+          // 4. Construir objeto similar al anterior
+          const data = {
+            location: {
+              name: cityNameOnly,
+              country: countryName,
+              localtime: nowHour.replace("T", " "),
+            },
+            current: {
+              temp_c: current.temperature,
+              humidity: humidity,
+              pressure_mb: pressure,
+              wind_kph: current.windspeed,
+              condition: {
+                text:
+                  current.weathercode === 0
+                    ? "Despejado"
+                    : current.weathercode < 3
+                    ? "Parcialmente nublado"
+                    : current.weathercode < 45
+                    ? "Nublado"
+                    : current.weathercode < 56
+                    ? "Niebla"
+                    : current.weathercode < 67
+                    ? "Llovizna"
+                    : current.weathercode < 78
+                    ? "Lluvia"
+                    : current.weathercode < 87
+                    ? "Nieve"
+                    : "Desconocido",
+              },
+              is_day: current.is_day,
+            },
+          };
+          updateUI(data);
+        } catch (error) {
+          cityNameDisplay.textContent =
+            "Ciudad no encontrada o error al buscar.";
+          weatherWidget.className = "weather-widget"; // Resetear tema
+          conditionIconDisplay.textContent = "";
+          temperatureDisplay.textContent = "";
+          cityTimeDisplay.textContent = "";
+          document.getElementById("humidity-card").textContent = "";
+          document.getElementById("pressure-card").textContent = "";
+          document.getElementById("wind-card").textContent = "";
+        }
+      }
+
+      function updateUI(data) {
+        const cityName = data.location.name;
+        const temperature = data.current.temp_c;
+        const humidity = data.current.humidity;
+        const pressure = data.current.pressure_mb;
+        const windSpeedKph = data.current.wind_kph;
+        const conditionText = data.current.condition.text.toLowerCase();
+        const isDay = data.current.is_day === 1;
+        const cityTime = data.location.localtime;
+
+        cityNameDisplay.textContent = `${data.location.name}, ${data.location.country}`;
+        temperatureDisplay.textContent = `Temperatura: ${temperature}°C`;
+
+        // Mostrar solo la hora con am/pm
+        const timeOnly = cityTime.split(" ")[1];
+        let [hour, minute] = timeOnly.split(":");
+        let ampm = "am";
+        hour = parseInt(hour, 10);
+        if (hour >= 12) {
+          ampm = "pm";
+          if (hour > 12) hour -= 12;
+        }
+        if (hour === 0) hour = 12;
+        cityTimeDisplay.textContent = `Hora local: ${hour}:${minute} ${ampm}`;
+
+        // Actualizar tarjetas
+        document.getElementById("humidity-card").textContent = `${humidity} %`;
+        document.getElementById(
+          "pressure-card"
+        ).textContent = `${pressure} hPa`;
+        document.getElementById(
+          "wind-card"
+        ).textContent = `${windSpeedKph} km/h`;
+
+        // Cambiar el tema de fondo
+        weatherWidget.className = "weather-widget"; // Resetear clases
+
+        // Fondo según clima solo de día
+        if (isDay) {
+          weatherWidget.classList.add("light-theme");
+          if (conditionText.includes("despejado")) {
+            weatherWidget.classList.add("sunny-bg");
+          } else if (conditionText.includes("parcialmente nublado")) {
+            weatherWidget.classList.add("partly-bg");
+          } else if (conditionText.includes("nublado")) {
+            weatherWidget.classList.add("cloudy-bg");
+          } else if (conditionText.includes("niebla")) {
+            weatherWidget.classList.add("fog-bg");
+          } else if (conditionText.includes("llovizna")) {
+            weatherWidget.classList.add("drizzle-bg");
+          } else if (conditionText.includes("lluvia")) {
+            weatherWidget.classList.add("rain-bg");
+          } else if (conditionText.includes("nieve")) {
+            weatherWidget.classList.add("snow-bg");
+          }
+        } else {
+          weatherWidget.classList.add("dark-theme");
+        }
+
+        // Mostrar el icono del clima y referencia
+        conditionIconDisplay.className = "";
+        const conditionTextMap = {
+          despejado: { icon: "☀️", text: "Soleado" },
+          "parcialmente nublado": { icon: "⛅", text: "Parcialmente nublado" },
+          nublado: { icon: "☁️", text: "Nublado" },
+          niebla: { icon: "🌫️", text: "Niebla" },
+          llovizna: { icon: "🌦️", text: "Llovizna" },
+          lluvia: { icon: "🌧️", text: "Lluvia" },
+          nieve: { icon: "❄️", text: "Nieve" },
+        };
+
+        let ref = conditionTextMap["despejado"];
+        for (const key in conditionTextMap) {
+          if (conditionText.includes(key)) {
+            ref = conditionTextMap[key];
+            break;
+          }
+        }
+        document.getElementById("condition-icon-big").textContent = ref.icon;
+        document.getElementById("condition-text").textContent = ref.text;
+      }
+    </script>
+  </body>
+</html>
