@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arimo", sans-serif;
+  background-color: #d1c407;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(175, 1, 1, 0.8);
+  border-bottom: 2px solid #333;
+}
+header h2 a {
+  color: #f7f306;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+}
+.menu .small_box {
+  width: 100px;
+  margin: 0 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+.menu .small_box a {
+  color: #d3f801;
+  text-decoration: none;
+  display: block;
+  padding: 10px 0;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.menu .small_box:hover {
+  background-color: #ca0303;
+  transform: scale(1.1);
+  border-radius: 5px;
+}
+
+.toggle-menu,
+.toggle-menu-label {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #8d0101;
+    animation: slideDown 0.5s ease-in-out;
+    padding: 20px;
+  }
+  .toggle-menu:checked ~ .menu {
+    display: flex;
+  }
+  .toggle-menu-label {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+  }
+  .small_box {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: transparent;
+  }
+  .small_box:hover {
+    background-color: #33cc99;
+    transform: scale(1.05);
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=10-challenge.css.map */
