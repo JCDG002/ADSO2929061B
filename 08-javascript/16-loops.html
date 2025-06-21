@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops & Objects</title>
+    <link rel="stylesheet" href="css/master.css">
+
+
+<style>
+section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 0.2rem;
+            justify-content: center;
+            li {
+                background-color: #f0db4f;
+                color: #0009;
+                padding: 0.4rem 0.6rem;
+            }
+        }
+ 
+</style>
+
+
+
+<body>
+    <nav class="controls">
+        <a href="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#ffffff"
+                    d="M346.7 6C337.6 17 320 42.3 320 72c0 40 15.3 55.3 40 80s40 40 80 40c29.7 0 55-17.6 66-26.7c4-3.3 6-8.2 6-13.3s-2-10-6-13.2c-11.4-9.1-38.3-26.8-74-26.8c-32 0-40 8-40 8s8-8 8-40c0-35.7-17.7-62.6-26.8-74C370 2 365.1 0 360 0s-10 2-13.3 6zM244.6 136c-40 0-77.1 18.1-101.7 48.2l60.5 60.5c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-55.3-55.3 0 .1L2.2 477.9C-2 487-.1 497.8 7 505s17.9 9 27.1 4.8l134.7-62.4-52.1-52.1c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L199.7 433l100.2-46.4c46.4-21.5 76.2-68 76.2-119.2C376 194.8 317.2 136 244.6 136z" />
+            </svg>
+        </a>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Loop Examples</h1>
+        </header>
+        <section>
+            <h3>Loop (for)</h3>
+            <p>
+                <small>
+                    Print even  numbers from 0 to 10
+                </small>
+            </p>
+            <ul class="even-numbers"></ul>
+            <!--  -->
+            <h3>Loop (forin)</h3>
+            <p>
+                <small>
+                    Print objects propierties
+                </small>
+            </p>
+            <ul class="props-object"></ul>
+            <!--  -->
+            <h3>Loop (while)</h3>
+            <p>
+                <small>
+                    Print multiples of 5 from 0 to 25
+                </small>
+            </p>
+            <ul class="mult-five"></ul>
+            <!--  -->
+            <h3>Loop (do while)</h3>
+            <p>
+                <small>
+                    Print factorial (N!) of 5
+                </small>
+            </p>
+            <ul class="fact-number"></ul>
+            <!--  -->
+            <h3>Loop (break)</h3>
+            <p>
+                <small>
+                    Fibonacci (10 = 89)
+                </small>
+            </p>
+            <ul class="fibo-sec"></ul>
+        </section>
+    </main>
+    <script defer>
+        const evenNumbers = document.querySelector('.even-numbers')
+        const propsObject = document.querySelector('.props-object')
+        const multFive = document.querySelector('.mult-five')
+        const factNumber = document.querySelector('.fact-number')
+        const fiboSec = document.querySelector('.fibo-sec')
+        const serie= {
+            title: 'Arcane',
+            year: 2024,
+            season: 2
+        }
+        //loop (for)
+        for (let i = 0; i <= 10; i++) {
+            if (i % 2 == 0) {
+                evenNumbers.innerHTML += "<li>"+i+"</li"
+        }
+    }
+
+    //Loop (forin)
+    for (let serie in series) {
+       propsObject.innerHTML += `<li>${serie} : ${series[serie]}</li>`
+    }
+//Loop (while)
+    let i = 0 
+    while (i <= 25) {
+        if (i % 5 == 0) {
+            multFive.innerHTML += "<li>"+i+"</li>"
+        }
+        i++
+    }
+
+    //loop (do while)
+let inx = 1
+let nfac = 5
+let fact = 1
+let nums = 5
+    
+do {
+    fact *= inx 
+    if (inx < nfac) {
+        nums += "x" + (nfac-inx)
+    }
+    if (inx == nfac) {
+        factNumber.innerHTML += "<li>"+nums+" = "+fact+"</li>"
+    }
+}while (inx <= nfac)
+
+let act = 1
+let prev = 0
+let sum = 0
+let sec = ''
+for(let i =0; i <= 50; i ++) {
+    sum = act + prev 
+    prev = act 
+    act = sum 
+    sec += "" + act
+    if (i == 9) {
+      fiboSec.innerHTML = "<li>" + sec +"</li"  
+        break
+    }
+}
+
+        </script>
+</body>
+
+</html>
