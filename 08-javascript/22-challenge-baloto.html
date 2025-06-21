@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22- challengue-baloto</title>
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <style>
+         /*** Pague # 1: Home Principal ***/
+         section div.home-principal {
+            background: url(images/balloto/body_home.svg) no-repeat center;
+            /* border: red solid 2px; */
+            height: 614px;
+            width: 355px;
+            margin: 1rem auto;
+            position: relative;    /*  Necesario para que el botón se posicione relativo a este contenedor  */
+            
+            .button-home {
+                background: url(images/balloto/button_enter.svg) no-repeat center;
+                /* border: red solid 2px; */
+                height: 43px;
+                width: 205px;
+                margin: 1rem auto;
+                /* Truco de Centrado: */
+                position: absolute;
+                bottom: 1rem;                       /* Alinea el botón a la parte inferior */
+                left: 50%;
+                transform: translateX(-50%);        /*  Centra el botón horizontalmente */
+                transition: transform 0.3s;         /*   Añade transiciones suaves | Funciona con el hover */
+            }
+                .button-home:hover {
+                    transform: translateX(-50%) scale(1.1);     /*  Aumenta el tamaño del botón al hacer hover */
+                    cursor: pointer;                            /*  Cambia el cursor para indicar que es clickeable */
+                }   
+         }
+
+        /*** Page # 2: Page Play ***/
+        div.page-play {
+            /* border: red solid 1px; */
+            background: url(images/balloto/body_play.svg);
+            height: 614px;
+            width: 355px;
+            margin: 1rem auto;
+            position: relative;    /*  Necesario para que el botón se posicione relativo a este contenedor  */
+
+
+        }
+
+            div.header-play {
+                /* border: red solid 1px; */
+                margin: 2px;
+                display: flex;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .header-play > a.button-back  {
+                /* border: red solid 2px; */
+                background: url(images/balloto/button-back.svg) no-repeat center;
+                margin-top: 15px;
+                height: 28px;
+                width: 28px;
+                transition: all 0.3s;      /* Añade transiciones suaves | Funciona con el hover  */
+            }
+                a.button-back:hover {
+                    transform: scale(1.3);           /*  Aumenta el tamaño del botón al hacer hover */
+                    cursor: pointer;                /*  Cambia el cursor para indicar que es clickeable */
+                }
+            
+            .header-play > div.title-balloto {
+                /* border: red solid 1px; */
+                background: url(images/balloto/title_balloto.svg) no-repeat center;
+                margin-top: 7px;
+                height: 137px;
+                width: 257px;
+                transition: all 0.7s linear;
+
+            }
+                div.title-balloto:hover {
+                    transform: rotateX(360deg);
+                }
+            
+            .page-play > button.button-play {
+                background: url(images/balloto/button_play.svg) no-repeat center;
+                /* border: red solid 1px; */
+                border-radius: 10px;
+                height: 50px;
+                width: 210px;
+                /* Truco de Centrado: */
+                position: absolute;
+                bottom: 1rem;                       /* Alinea el botón a la parte inferior */
+                left: 50%;
+                transform: translateX(-50%);        /*  Centra el botón horizontalmente */   
+                margin-bottom: 10px;                /*  Para subir el botón un poco  */
+                transition: all 0.3s;
+            }
+                button.button-play:hover {
+                    transform: translateX(-50%) scale(1.1);
+                    cursor: pointer;
+
+                }
+            
+            div.page-play > div.numero-1 {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 377px;
+                left: 35px;
+            }
+            div.page-play > div.numero-2 {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 297px;
+                left: 100px;
+            }
+            div.page-play > div.numero-3 {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 237px;
+                left: 175px;
+            }
+            div.page-play > div.numero-4 {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 297px;
+                left: 255px;
+            }
+            div.page-play > div.numero-5 {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 377px;
+                left: 300px;
+            }
+            div.page-play > div.super-balota  {
+                /* border: red solid 1px; */
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 391px;
+                left: 181px;
+
+            }
+
+        /**** Target: Paginaciones  ****/
+        section .page-target {
+             display: none;                 /*  Oculta todas las secciones 17-pokedex-api.html#page1-home-principal */
+        }  
+
+        section .page-target:target {
+            display: block;               /*  Muestra la sección cuando su id coincide con el hash en la URL */                             
+        }                               /*  Se le pone flex en luhar de block por que main es flex. */   
+       
+    </style>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack en iPhone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6b6b70, #3a3a3e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Marco del iPhone más alto */
+        .iphone-frame {
+            width: 375px;
+            height: 840px; /* Aumentada la altura para más espacio */
+            background: #1a1a1a;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 
+                        inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Barra de estado */
+        .status-bar {
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .time {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Muesca superior */
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 210px;
+            height: 30px;
+            background: #1a1a1a;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            z-index: 10;
+        }
+        
+        /* Pantalla del iPhone */
+        .iphone-screen {
+            flex: 1;
+            background: linear-gradient(135deg, #1a5f23, #0d3d1e);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            position: relative;
+        }
+        
+        /* Botón home */
+        .home-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Contenido del juego */
+        .game-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #ffd700;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: rgba(0, 50, 0, 0.5);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: white;
+        }
+        
+        .current-card {
+            margin: 15px 0;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card {
+            width: 140px;
+            height: 200px;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .card-suit {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .card-bottom {
+            text-align: right;
+            transform: rotate(180deg);
+        }
+        
+        .hearts, .diamonds {
+            color: #e00;
+        }
+        
+        .clubs, .spades {
+            color: #000;
+        }
+        
+        .controls {
+            margin: 20px 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 12px 0;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            min-width: 120px;
+            max-width: 150px;
+        }
+        
+        .btn:hover {
+            background: #ffc400;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn:disabled {
+            background: #888;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        #hit-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        #stand-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        #reset-btn {
+            background: #2196F3;
+            color: white;
+            max-width: 100%;
+            padding: 15px;
+            margin-top: 10px; /* Más espacio arriba */
+        }
+        
+        .history {
+            background: rgba(0, 40, 0, 0.6);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 15px;
+            min-height: 90px;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .history h3 {
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .history-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+            overflow-y: auto;
+            max-height: 100px;
+        }
+        
+        .history-card {
+            width: 55px;
+            height: 80px;
+            font-size: 1rem;
+            position: relative;
+        }
+        
+        .history-card .card-value {
+            font-size: 1.1rem;
+        }
+        
+        .history-card .card-suit {
+            font-size: 1.6rem;
+            margin-top: 12px;
+        }
+        
+        .modal {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #2c3e50, #1a2a3a);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            animation: modalAppear 0.5s ease-out;
+            border: 3px solid #ffd700;
+        }
+        
+        @keyframes modalAppear {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .win {
+            color: #4CAF50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+        }
+        
+        .lose {
+            color: #f44336;
+            text-shadow: 0 0 10px rgba(244, 67, 54, 0.7);
+        }
+        
+        .modal p {
+            font-size: 1.3rem;
+            margin: 12px 0;
+            color: white;
+        }
+        
+        #new-game-btn {
+            background: #ffd700;
+            color: #000;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            margin-top: 15px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Indicadores de señal y batería */
+        .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .signal {
+            display: flex;
+            align-items: flex-end;
+            height: 14px;
+            gap: 2px;
+        }
+        
+        .signal-bar {
+            width: 3px;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        .signal-bar:nth-child(1) { height: 5px; }
+        .signal-bar:nth-child(2) { height: 8px; }
+        .signal-bar:nth-child(3) { height: 11px; }
+        .signal-bar:nth-child(4) { height: 14px; }
+        
+        .battery {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .battery-level {
+            width: 22px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .battery-fill {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            bottom: 1px;
+            width: 75%;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        .battery-tip {
+            width: 3px;
+            height: 5px;
+            background: white;
+            border-radius: 0 1px 1px 0;
+        }
+        
+        /* Footer con instrucciones */
+        .instructions {
+            color: #ccc;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+    @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+           .figma-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        color: #000000;
+        padding: 10px 15px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #000000;
+        transition: all 0.3s ease;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+    }
+
+    .figma-button:hover {
+        background: #f5f5f5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .figma-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="notch"></div>
+        <div class="status-bar">
+            <div class="status-icons">
+                <div class="signal">
+                    <div class="signal-bar"></div>
+                    <div class="signal-bar"></div>
+                    <div class="signal-bar"></div>
+                    <div class="signal-bar"></div>
+                </div>
+            </div>
+            <div class="time">12:30</div>
+            <div class="battery">
+                <div class="battery-level">
+                    <div class="battery-fill"></div>
+                </div>
+                <div class="battery-tip"></div>
+            </div>
+        </div>
+        
+        <div class="iphone-screen">
+            <div class="game-container">
+                <h1>♠️ BLACKJACK ♥️</h1>
+                
+                <div class="game-info">
+                    <div class="total">Total: <span id="total-value">0</span></div>
+                    <div class="status">Estado: <span id="game-status">Jugando</span></div>
+                </div>
+                
+                <div class="current-card">
+                    <div class="card">
+                        <div class="card-value" id="card-value-top">A</div>
+                        <div class="card-suit" id="card-suit">♠</div>
+                        <div class="card-bottom">
+                            <div class="card-value" id="card-value-bottom">A</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="hit-btn" class="btn">Seguir</button>
+                    <button id="stand-btn" class="btn">Parar</button>
+                    <button id="reset-btn" class="btn">Reiniciar</button>
+                </div>
+                
+                <div class="history">
+                    <h3>Cartas Jugadas</h3>
+                    <div class="history-cards" id="history-cards">
+                        <!-- Las cartas históricas se añadirán aquí -->
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <p>Pulsa "Seguir" para otra carta o "Parar" para finalizar tu turno</p>
+                </div>
+            </div>
+            
+            <div id="result-modal" class="modal">
+                <div class="modal-content">
+                    <h2 id="result-title">¡RESULTADO!</h2>
+                    <p>Tu total: <span id="player-total"></span></p>
+                    <p>Total dealer: <span id="dealer-total"></span></p>
+                    <p id="result-message"></p>
+                    <button id="new-game-btn" class="btn">Nuevo Juego</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="home-button"></div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const cardValueTop = document.getElementById('card-value-top');
+        const cardValueBottom = document.getElementById('card-value-bottom');
+        const cardSuit = document.getElementById('card-suit');
+        const totalValue = document.getElementById('total-value');
+        const gameStatus = document.getElementById('game-status');
+        const hitBtn = document.getElementById('hit-btn');
+        const standBtn = document.getElementById('stand-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const historyCards = document.getElementById('history-cards');
+        const resultModal = document.getElementById('result-modal');
+        const resultTitle = document.getElementById('result-title');
+        const resultMessage = document.getElementById('result-message');
+        const playerTotal = document.getElementById('player-total');
+        const dealerTotal = document.getElementById('dealer-total');
+        const newGameBtn = document.getElementById('new-game-btn');
+        
+        // Variables del juego
+        let currentTotal = 0;
+        let gameActive = true;
+        let cardsHistory = [];
+        
+        // Palos de cartas
+        const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+        const suitSymbols = {
+            'hearts': '♥',
+            'diamonds': '♦',
+            'clubs': '♣',
+            'spades': '♠'
+        };
+        
+        // Inicializar el juego
+        function initGame() {
+            currentTotal = 0;
+            gameActive = true;
+            cardsHistory = [];
+            historyCards.innerHTML = '';
+            gameStatus.textContent = 'Jugando';
+            gameStatus.style.color = '#fff';
+            totalValue.textContent = '0';
+            totalValue.style.color = '#fff';
+            
+            // Generar primera carta
+            generateNewCard();
+            
+            // Habilitar botones
+            hitBtn.disabled = false;
+            standBtn.disabled = false;
+        }
+        
+        // Generar una nueva carta
+        function generateNewCard() {
+            if (!gameActive) return;
+            
+            // Generar valor de carta (1-13, donde 11=J, 12=Q, 13=K)
+            const value = Math.floor(Math.random() * 13) + 1;
+            const suit = suits[Math.floor(Math.random() * 4)];
+            
+            // Calcular valor real (J, Q, K = 10, As = 11 o 1)
+            let cardValue;
+            let displayValue;
+            
+            if (value === 1) {
+                displayValue = 'A';
+                // Para el As, decidir si vale 1 u 11 según el total actual
+                cardValue = (currentTotal + 11 <= 21) ? 11 : 1;
+            } else if (value >= 11) {
+                displayValue = ['J', 'Q', 'K'][value - 11];
+                cardValue = 10;
+            } else {
+                displayValue = value;
+                cardValue = value;
+            }
+            
+            // Actualizar carta actual
+            cardValueTop.textContent = displayValue;
+            cardValueBottom.textContent = displayValue;
+            cardSuit.textContent = suitSymbols[suit];
+            cardSuit.className = 'card-suit ' + suit;
+            
+            // Actualizar total
+            currentTotal += cardValue;
+            totalValue.textContent = currentTotal;
+            
+            // Añadir al historial
+            addToHistory(displayValue, suit);
+            
+            // Comprobar si el jugador se ha pasado
+            if (currentTotal > 21) {
+                endGame(false);
+            } else if (currentTotal === 21) {
+                endGame(true);
+            }
+        }
+        
+        // Añadir carta al historial
+        function addToHistory(value, suit) {
+            cardsHistory.push({value, suit});
+            
+            const historyCard = document.createElement('div');
+            historyCard.className = 'history-card';
+            historyCard.innerHTML = `
+                <div class="card">
+                    <div class="card-value">${value}</div>
+                    <div class="card-suit ${suit}">${suitSymbols[suit]}</div>
+                    <div class="card-bottom">
+                        <div class="card-value">${value}</div>
+                    </div>
+                </div>
+            `;
+            
+            historyCards.appendChild(historyCard);
+            historyCards.scrollLeft = historyCards.scrollWidth;
+        }
+        
+        // Finalizar el juego
+        function endGame(playerStopped) {
+            gameActive = false;
+            gameStatus.textContent = 'Finalizado';
+            gameStatus.style.color = '#ff9800';
+            
+            // Calcular carta del dealer
+            const dealerValue = Math.floor(Math.random() * 10) + 1;
+            const dealerTotalValue = currentTotal + dealerValue;
+            
+            // Determinar resultado
+            let playerWins = false;
+            
+            if (playerStopped) {
+                // Jugador se detuvo voluntariamente
+                playerWins = dealerTotalValue >= 21;
+            } else {
+                // Jugador se pasó de 21
+                playerWins = false;
+            }
+            
+            // Mostrar resultado en el modal
+            playerTotal.textContent = currentTotal;
+            dealerTotal.textContent = dealerTotalValue;
+            
+            if (playerWins) {
+                resultTitle.textContent = '¡GANASTE!';
+                resultTitle.className = 'win';
+                resultMessage.textContent = '¡Felicidades! Has ganado el juego.';
+                resultMessage.className = 'win';
+            } else {
+                resultTitle.textContent = '¡PERDISTE!';
+                resultTitle.className = 'lose';
+                resultMessage.textContent = 'La casa siempre gana. ¡Inténtalo de nuevo!';
+                resultMessage.className = 'lose';
+            }
+            
+            // Cambiar color del total según el resultado
+            totalValue.style.color = playerWins ? '#4CAF50' : '#f44336';
+            
+            // Mostrar modal
+            resultModal.style.display = 'flex';
+            
+            // Deshabilitar botones de juego
+            hitBtn.disabled = true;
+            standBtn.disabled = true;
+        }
+        
+        // Event Listeners
+        hitBtn.addEventListener('click', () => {
+            if (gameActive) {
+                generateNewCard();
+            }
+        });
+        
+        standBtn.addEventListener('click', () => {
+            if (gameActive) {
+                endGame(true);
+            }
+        });
+        
+        resetBtn.addEventListener('click', initGame);
+        newGameBtn.addEventListener('click', () => {
+            resultModal.style.display = 'none';
+            initGame();
+        });
+        
+        // Actualizar la hora en tiempo real
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.querySelector('.time').textContent = `${hours}:${minutes}`;
+        }
+        
+        // Iniciar el juego al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            initGame();
+            updateTime();
+            setInterval(updateTime, 60000); // Actualizar cada minuto
+        });
+    </script>
+
+    <a href="https://www.figma.com/design/fM9iDi9Co7vxa6o91s1WGc/Untitled?node-id=0-1&p=f&t=or19Rsh04Lym9Shf-0" target="_blank" class="figma-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="24" height="24">
+        <path fill="#1abcfe" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/>
+        <path fill="#0acf83" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/>
+        <path fill="#ff7262" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/>
+        <path fill="#f24e1e" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/>
+        <path fill="#a259ff" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/>
+    </svg>
+    Ver en Figma
+</a>
+
+</body>
+</html>
+</body>
+</html>

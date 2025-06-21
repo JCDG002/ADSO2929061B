@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25- challengue-array</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        /*** Pague # 1: Home Principal ***/    
+        section div.home-principal {
+            background: url(images/array/body_home.svg) no-repeat center;
+            /* border: red solid 2px; */
+            height: 614px;
+            width: 355px;
+            margin: 1rem auto;
+            position: relative;    /*  Necesario para que el botón se posicione relativo a este contenedor  */
+            
+            .button-home {
+                background: url(images/array/button_enter.svg) no-repeat center;
+                /* border: red solid 2px; */
+                height: 43px;
+                width: 205px;
+                margin: 1rem auto;
+                /* Truco de Centrado: */
+                position: absolute;
+                bottom: 1rem;                       /* Alinea el botón a la parte inferior */
+                left: 50%;
+                transform: translateX(-50%);        /*  Centra el botón horizontalmente */
+                transition: transform 0.3s;         /*   Añade transiciones suaves | Funciona con el hover */
+            }
+                .button-home:hover {
+                    transform: translateX(-50%) scale(1.1);     /*  Aumenta el tamaño del botón al hacer hover */
+                    cursor: pointer;                            /*  Cambia el cursor para indicar que es clickeable */
+                }   
+         }
+
+         /*** Page # 2: Page Play ***/
+        div.page-play {
+            /* border: red solid 1px; */
+            background: url(images/array/body_play.svg);
+            height: 614px;
+            width: 355px;
+            margin: 1rem auto;
+            position: relative;    /*  Necesario para que el botón se posicione relativo a este contenedor  */
+        }
+
+            div.header-play-array {
+                /* border: red solid 1px; */
+                margin: 2px;
+                display: flex;
+                padding: 10px;
+                gap: 70px;
+            }
+
+                .header-play-array > a.button-back  {
+                    /* border: red solid 2px; */
+                    background: url(images/array/button-back.svg) no-repeat center;
+                    margin-top: 15px;
+                    height: 28px;
+                    width: 28px;
+                    transition: all 0.3s;      /* Añade transiciones suaves | Funciona con el hover  */
+                }
+                    a.button-back:hover {
+                        transform: scale(1.3);           /*  Aumenta el tamaño del botón al hacer hover */
+                        cursor: pointer;                /*  Cambia el cursor para indicar que es clickeable */
+                    }
+                
+                .header-play-array > div.title-xmen {
+                    /* border: red solid 1px; */
+                    background: url(images/array/title_x-men.svg) no-repeat center;
+                    margin-top: 5px;
+                    height: 85px;
+                    width: 129px;
+                    transition: all 0.7s linear;
+
+                }
+                    div.title-xmen:hover {
+                        transform: rotateX(360deg);
+                    }
+
+            /* <!-- Contenedor Personajes --> */
+            div.container-characters {
+                /* border: solid red 1px; */
+                margin-top: 42px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);      /* Cuatro columnas de igual ancho */
+                grid-gap: 10px; /* Espacio entre los elementos */
+                padding: 10px;
+            }
+
+                .container-characters > .character-1, .character-2, .character-3, .character-4, .character-5, .character-6, .character-7, .character-8 {
+                    height: 73px;
+                    width: 73px;
+                    margin: auto;
+                    color: white;
+                    border-radius: 50%;
+                    padding: 0px;
+                    font-size: 1.5em;
+                    /* border: 1px solid #ff0000; */
+                }
+
+                /* Aplicamos el efecto de resaltado difunado a cada personaje */
+                .character-1.selected {
+                    box-shadow: 0 0 15px 10px #F4F41F;  /* Efecto de wolwerine */  /* 1: desplazamiento horizontal de la sombra, 2: desplazamiento vertical de la sombra, 3: difusión de sombra, 4: Tamaño de espanción de sombra */
+                }
+
+                .character-2.selected {
+                    box-shadow: 0 0 15px 10px #DF4531; /* Efecto de magneto */
+                }
+
+                .character-3.selected {
+                    box-shadow: 0 0 15px 10px #2485B7; /* Efecto de ciclope */
+                }
+
+                .character-4.selected {
+                    box-shadow: 0 0 15px 10px #CA373B; /* Efecto de deadpool */
+                }
+
+                .character-5.selected {
+                    box-shadow: 0 0 15px 10px #DBDBDB; /* Efecto de storm */
+                }
+
+                .character-6.selected {
+                    box-shadow: 0 0 15px 10px #CC6C97; /* Efecto de gambito */
+                }
+
+                .character-7.selected {
+                    box-shadow: 0 0 15px 10px #B1283A; /* Efecto de nightcrawler */
+                }
+
+                .character-8.selected {
+                    box-shadow: 0 0 15px 10px #1FC0E8; /* Efecto de mystique */
+                }
+
+                .container-characters > .character-1 {
+                    background: url(images/array/wolverine.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-1:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-2 {
+                    background: url(images/array/magneto.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-2:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+                    
+                .container-characters > .character-3 {
+                    background: url(images/array/ciclope.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-3:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-4 {
+                    background: url(images/array/deadpool.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-4:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-5 {
+                    background: url(images/array/storm.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-5:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-6 {
+                    background: url(images/array/gambito.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-6:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-7 {
+                    background: url(images/array/nightcrawler.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-7:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+                .container-characters > .character-8 {
+                    background: url(images/array/mystique.svg) no-repeat center;
+                    transition: all 0.3s;
+                }
+                    .character-8:hover {
+                        transform: scale(1.2);
+                        cursor: pointer;
+                    }
+
+            /* <!-- Contenedor Selects --> */
+            div.container-selects {
+                /* border: solid red 1px; */
+                margin-top: 40px;
+                padding: 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0px;
+                justify-items: center;
+            }
+
+                div.container-selects > .select-firts-last {
+                    /* border: red solid 1px; */
+                    background: url(images/array/button_first.svg) no-repeat center;
+                    width: 92px;
+                    height: 25px;
+                    transition: all 0.3s;
+                }
+                    .select-firts-last:hover {
+                        transform: scale(1.1);
+                        cursor: pointer;
+                    }
+
+                div.container-selects > .select-add-remove {
+                    /* border: red solid 1px; */
+                    background: url(images/array/button_add.svg) no-repeat center;
+                    width: 92px;
+                    height: 25px;
+                    transition: all 0.3s;
+                }
+                    .select-add-remove:hover {
+                        transform: scale(1.1);
+                        cursor: pointer;
+                    }
+
+                div.container-selects > .select-position {
+                    /* border: red solid 1px; */
+                    background:url(images/array/button_position.svg);
+                    width: 92px;
+                    height: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+                    .input {
+                        /* border: red solid 1px; */
+                        border-radius: 10px;
+                        width: 70px;
+                        height: 12px;
+                        text-align: center;
+                        border: none;
+                        background-color: transparent;
+                    }
+                }
+
+            /* <!-- Contenedor Button Agregar y remover --> */
+            div.container-add-remove {
+                /* border: red 1px solid; */
+                padding: 5px;
+            }
+
+                div.container-add-remove > .button-add-remove {
+                    /* border: red 1px solid; */
+                    background: url(images/array/signo-mas.svg);
+                    width: 43px;
+                    height: 43px;
+                    margin: auto;
+                    transition: all 0.5s;
+                    
+                }
+                    .button-add-remove:hover {
+                        transform: scale(1.4);
+                        cursor: pointer;
+                    }
+            
+            /* <!-- Contenedor Resultados --> */
+            div.container-results {
+                /* border: red 1px solid; */
+                margin-top: 51px;
+                padding: 10px;
+                display: flex;
+                overflow-x: auto;        /* Para evitar el desbordamiento */
+                gap: 10px;
+                white-space: nowrap;     /* Evita que los elementos se envuelvan */
+                height: 90px;           /* Altura fija para el contenedor */
+            }
+
+            .result-character {
+                height: 75px;
+                width: 75px;
+                position: relative;
+                background-size: cover;
+                flex-shrink: 0;          /* Evita que los elementos se reduzcan */
+            }
+
+            .result-character::before {
+                content: attr(data-index);
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 2px 5px;
+                border-radius: 3px;
+                font-size: 12px;
+            }
+
+        
+         /**** Target: Paginaciones  ****/
+        section .page-target {
+             display: none;                 /*  Oculta todas las secciones 17-pokedex-api.html#page1-home-principal */
+        }  
+
+        section .page-target:target {
+            display: block;               /*  Muestra la sección cuando su id coincide con el hash en la URL */                             
+        }                               /*  Se le pone flex en luhar de block por que main es flex. */  
+
+    </style>
+    
+</head>
+<body>
+    <nav class="controls">
+        <a href="index.html"> <!-- ../para devolverme  -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+        </a>
+    </nav>
+    <main>
+        <header>
+            <h1>25- challengue array</h1>
+            <h2>Este challengue es de manipulación de arrays</h2>
+        </header>
+        <section>
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://embed.figma.com/design/I8ql5u1YhxH9YaIl2H743H/Array?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+            <!-- Page # 1 --> 
+            <div class="home-principal page-target" id="page1-home-principal">
+                <a href="#page2-play-array" class="button-home"></a>
+            </div> 
+
+            <!-- Page # 2 --> 
+            <div class="page-play page-target" id="page2-play-array">
+                <div class="header-play-array">
+                    <a href="#page1-home-principal" class="button-back"></a>
+                    <div class="title-xmen"></div>
+                </div>
+                <!-- Contenedor Personajes --> 
+                <div class="container-characters">
+                    <div class="character character-1" data-name="Wolverine"></div>
+                    <div class="character character-2" data-name="Magneto"></div>
+                    <div class="character character-3" data-name="Ciclope"></div>
+                    <div class="character character-4" data-name="Deadpool"></div>
+                    <div class="character character-5" data-name="Storm"></div>
+                    <div class="character character-6" data-name="Gambito"></div>
+                    <div class="character character-7" data-name="Nightcrawler"></div>
+                    <div class="character character-8" data-name="Mystique"></div>
+                </div>
+                <!-- Contenedor Selects -->
+                <div class="container-selects">
+                    <div id="select-first-last" class="select-firts-last"></div>
+                    <div id="select-add-remove" class="select-add-remove"></div>
+                    <div class="select-position">
+                        <input id="position-input" class="input" type="number" placeholder="  position">
+                    </div>
+                </div>
+                <!-- Contenedor Button Agregar y remover -->
+                <div class="container-add-remove">
+                    <div id="button-add-remove" class="button-add-remove"></div>
+                </div>
+                <!-- Contenedor Resultados -->
+                 <div id="container-results" class="container-results">
+
+                 </div>
+            </div>
+        </section>
+         
+    </main>  
+    <script>
+        // Variables globales
+        let selectedCharacter = null;  // Variable para mensaje de alerta
+        let charactersArray = [];      // Inicializacion y Decalracion de array para almacenar los personajes
+        let isAddMode = true;          // true para agregar, false para eliminar
+        let isFirstMode = true;        // true para agregar/eliminar al principio, false para el final
+
+        // Seleccionamos los elementos del DOM | por su ID
+        const characters = document.querySelectorAll('.character');            // Selecciono todos los character
+        const selectFirstLast = document.getElementById('select-first-last');
+        const selectAddRemove = document.getElementById('select-add-remove');
+        const buttonAddRemove = document.getElementById('button-add-remove');
+        const containerResults = document.getElementById('container-results');
+        const positionInput = document.getElementById('position-input');
+
+        // 1. Evento para seleccionar un personaje y aplicar efecto resaltado o difuninado a cada personaje
+        characters.forEach(character => {                // forEch para sleccionar los character
+            character.addEventListener('click', () => {
+                // Deselecciona todos los personajes
+                characters.forEach(c => c.classList.remove('selected'));
+                // Selecciona el personaje por lo cual que demos click
+                character.classList.add('selected');
+                selectedCharacter = character.getAttribute('data-name');   // Me Guarda el personaje cuando de click en la variable selectAddRemove y Mas abajo lo agrega al arreglo. 
+            });
+        });
+
+        // 2. Evento para cambiar entre agregar y eliminar y suicheo de images | add a remove
+        selectAddRemove.addEventListener('click', () => {
+            if (selectAddRemove.style.backgroundImage.includes('button_add.svg')) {
+                selectAddRemove.style.backgroundImage = 'url(images/array/button_remove.svg)';  // selectAddRemove propiedad para suicheo o cambio de imgs
+                buttonAddRemove.style.backgroundImage = 'url(images/array/signo-menos.svg)';
+                isAddMode = false;
+            } else {
+                selectAddRemove.style.backgroundImage = 'url(images/array/button_add.svg)';
+                buttonAddRemove.style.backgroundImage = 'url(images/array/signo-mas.svg)';
+                isAddMode = true;
+            }
+        });
+
+        // 3. Evento para cambiar entre agregar y eliminar al principio o al final del array y suicheo de images | first a last
+        selectFirstLast.addEventListener('click', () => {
+            if (selectFirstLast.style.backgroundImage.includes('button_first.svg')) {
+                selectFirstLast.style.backgroundImage = 'url(images/array/button_last.svg)';
+                isFirstMode = false;
+            } else {
+                selectFirstLast.style.backgroundImage = 'url(images/array/button_first.svg)';
+                isFirstMode = true;
+            }
+        });
+
+        // 4. Evento logica para agregar o eliminar personajes |    AQUI Error de wolwerine 
+        buttonAddRemove.addEventListener('click', () => {
+            if (!selectedCharacter) {
+                alert("Por favor seleccione un personaje.");
+                return;
+            }
+
+            if (isAddMode) {
+                // Agregar personaje al array charactersArray
+                if (positionInput.value !== "") {
+                    const index = parseInt(positionInput.value);                 // let charactersArray = ["Wolverine", "Magneto", "Storm"];
+                    if (index >= 0 && index <= charactersArray.length) {         // Agregar: Solo podemos agregar elementos en cualquier posición, incluyendo al final del array. Por eso, el índice puede ser menor o igual a la longitud del array (index <= charactersArray.length). < se usa para eliminar porque solo puedes eliminar elementos que ya existen.     
+                        charactersArray.splice(index, 0, selectedCharacter);     // Agrega en la posición especificada, sin eliminar ningún elemento. array.splice(start, deleteCount, item1, item2, ...); start: Es el índice en el que comienza la modificación del array. deletecount: 0 o 1, 0 no se elimina ningún elemento. item: array
+                    } else {
+                        alert("Índice fuera de rango.");
+                        return;
+                    }
+                } else {
+                    if (isFirstMode) {     // Si verdadero al principio
+                        charactersArray.unshift(selectedCharacter);     // Unshift:  Agrega al principio del array charactersArray
+                    } else {         // Si falso al final
+                        charactersArray.push(selectedCharacter);       // Push: Agrega al final del array charactersArray
+                    }
+                }
+            } else {
+                // Eliminar personaje
+                if (positionInput.value !== "") {
+                    const index = parseInt(positionInput.value);
+                    if (index >= 0 && index < charactersArray.length) {     // Eliminar: Solo podemos eliminar elementos que ya existen en el array. Por eso, el índice debe ser menor que la longitud del array (index < charactersArray.length). <= se usa para agregar porque puedes insertar un nuevo elemento en una posición que aún no existe (como el final del array).
+                        charactersArray.splice(index, 1);                   // Elimina en la posición especificada
+                    } else {
+                        alert("Índice fuera de rango.");
+                        return;
+                    }
+                } else {
+                    if (isFirstMode) {
+                        charactersArray.shift();     // Shift: Elimina al principio del array charactersArray
+                    } else {
+                        charactersArray.pop();     // Pop: Elimina al final del array charactersArray
+                    }
+                }
+            }
+
+            // Actualiza la visualización de los resultados
+            updateResults();
+        });
+
+        // 5. Función para actualizar | mostrar la visualización de los resultados
+        function updateResults() {
+            containerResults.innerHTML = ""; // Limpia el contenedor
+            charactersArray.forEach((character, index) => {
+                const characterDiv = document.createElement('div');
+                characterDiv.className = `result-character ${character.toLowerCase()}`;
+                characterDiv.style.backgroundImage = `url(images/array/${character.toLowerCase()}.svg)`;   // Busca la imagen del personaje correspondiente (Mismo nombre con la imagen y el data-name) | Por eso no me imprima wolverine por que estaba wolwerine.svg
+                characterDiv.setAttribute('data-index', index);
+                containerResults.appendChild(characterDiv);
+            });
+        }
+
+        // 6. Funciones utilizadas para la manipulacion de arrays.
+        /*
+            a. splice():    El método .splice() es una función incorporada en JavaScript que se utiliza para modificar arrays.
+                            Es una herramienta muy poderosa porque te permite agregar, eliminar o reemplazar elementos en un array en cualquier posición. 
+                            Su flexibilidad lo convierte en una de las funciones más utilizadas para manipular arrays.
+            b. .unshift():  Agrega al principio del array
+
+            c. .push():     Agrega al final del array 
+
+            d. .shift():    Elimina al principio del array
+
+            e. .pop();      Elimina al final del array
+        */
+    </script>
+</body>
+</html>
