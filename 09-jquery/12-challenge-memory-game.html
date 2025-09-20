@@ -1,283 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>12-challenge-memory-game</title>
-    <link rel="stylesheet" href="../css/master.css" />
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Concéntrese</title>
-      <style>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concéntrese</title>
+    <style>
         :root {
-          --flip-duration: 400ms;
-          --card-size: 120px;
-          --card-margin: 10px;
+            --flip-duration: 400ms;
+            --card-size: 120px;
+            --card-margin: 10px;
         }
 
         body {
-          font-family: system-ui, -apple-system, sans-serif;
-          background-color: white;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          margin: 0;
-          flex-direction: column;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
         }
 
         #game-container {
-          text-align: center;
+            text-align: center;
         }
 
         #attempts {
-          font-size: 1.2em;
-          margin-bottom: 20px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
 
         #board {
-          display: grid;
-          grid-template-columns: repeat(3, var(--card-size));
-          grid-template-rows: repeat(4, var(--card-size));
-          gap: var(--card-margin);
-          justify-content: center;
-          perspective: 1000px;
+            display: grid;
+            grid-template-columns: repeat(3, var(--card-size));
+            grid-template-rows: repeat(4, var(--card-size));
+            gap: var(--card-margin);
+            justify-content: center;
+            perspective: 1000px;
         }
 
         .card {
-          width: var(--card-size);
-          height: var(--card-size);
-          position: relative;
-          transform-style: preserve-3d;
-          transition: transform var(--flip-duration);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          border-radius: 8px;
-          cursor: pointer;
+            width: var(--card-size);
+            height: var(--card-size);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform var(--flip-duration);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            cursor: pointer;
         }
 
         .card:hover {
-          transform: scale(1.05);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .card.flipped {
-          transform: rotateY(180deg);
+            transform: rotateY(180deg);
         }
 
         .card.matched {
-          pointer-events: none;
+            pointer-events: none;
         }
 
         .face {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          backface-visibility: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 2em;
-          border-radius: 8px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
         }
 
         .front {
-          background-color: #333333; /* Gris oscuro */
-          color: white;
+            background-color: #333333;
+            color: white;
+            font-size: 2em;
         }
 
         .back {
-          background-color: #333333; /* Gris oscuro */
-          color: white;
-          transform: rotateY(180deg);
+            background-color: #333333;
+            transform: rotateY(180deg);
+        }
+
+        .back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            visibility: hidden;
+        }
+
+        .card.flipped .back img,
+        .card.matched .back img {
+            visibility: visible;
         }
 
         #reset-button {
-          margin-top: 20px;
-          padding: 10px 20px;
-          font-size: 1em;
-          cursor: pointer;
-          border: none;
-          background-color: #007bff;
-          color: white;
-          border-radius: 4px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
         }
 
         #win-modal {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.5);
-          display: none;
-          justify-content: center;
-          align-items: center;
-          z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
 
         #win-content {
-          background-color: white;
-          padding: 20px;
-          border-radius: 8px;
-          text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
         }
 
         #win-content button {
-          margin-top: 10px;
-          padding: 8px 16px;
-          cursor: pointer;
-          border: none;
-          background-color: #28a745;
-          color: white;
-          border-radius: 4px;
+            margin-top: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
         }
 
         @media (max-width: 600px) {
-          :root {
-            --card-size: 80px;
-            --card-margin: 5px;
-          }
+            :root {
+                --card-size: 80px;
+                --card-margin: 5px;
+            }
         }
-      </style>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </head>
-  </head>
-  <body class="jquery">
-    <nav>
-      <a href="index.html">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-          <path
-            fill="#ffffff"
-            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
-          />
-        </svg>
-      </a>
-    </nav>
-    <main>
-      <header>
-        <h1>12-challenge-memory-game</h1>
-        <p></p>
-      </header>
-      <section>
-        <body>
-          <div id="game-container">
-            <div id="attempts">Intentos: 0</div>
-            <div id="board"></div>
-            <button id="reset-button">Reiniciar</button>
-          </div>
-          <div id="win-modal">
-            <div id="win-content">
-              <p id="win-message"></p>
-              <button id="restart-from-win">Reiniciar</button>
-            </div>
-          </div>
-          <script>
-            $(document).ready(function () {
-              let attempts = 0;
-              let lock = false;
-              let firstCard = null;
-              let secondCard = null;
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="attempts">Intentos: 0</div>
+        <div id="board"></div>
+        <button id="reset-button">Reiniciar</button>
+    </div>
+    <div id="win-modal">
+        <div id="win-content">
+            <p id="win-message"></p>
+            <button id="restart-from-win">Reiniciar</button>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            let attempts = 0;
+            let lock = false;
+            let firstCard = null;
+            let secondCard = null;
 
-              function initGame() {
+            function initGame() {
                 attempts = 0;
-                $("#attempts").text("Intentos: " + attempts);
-                $("#board").empty();
+                $('#attempts').text('Intentos: ' + attempts);
+                $('#board').empty();
                 lock = false;
                 firstCard = null;
                 secondCard = null;
-                $("#win-modal").hide();
+                $('#win-modal').hide();
 
-                let numbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+                let images = [1,1,2,2,3,3,4,4,5,5,6,6];
 
-                for (let i = numbers.length - 1; i > 0; i--) {
-                  let j = Math.floor(Math.random() * (i + 1));
-                  [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+                for (let i = images.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [images[i], images[j]] = [images[j], images[i]];
                 }
 
-                numbers.forEach(function (value, index) {
-                  let card = $(
-                    '<div class="card" data-value="' +
-                      value +
-                      '" role="button" aria-pressed="false" tabindex="0"></div>'
-                  );
-                  let front = $('<div class="face front">?</div>');
-                  let back = $('<div class="face back">' + value + "</div>");
-                  card.append(front, back);
-                  $("#board").append(card);
+                images.forEach(function(value, index) {
+                    let card = $('<div class="card" data-value="' + value + '" role="button" aria-pressed="false" tabindex="0"></div>');
+                    let front = $('<div class="face front">?</div>');
+                    let back = $('<div class="face back"><img src="img/' + value + '.jpg" alt="Imagen ' + value + '"></div>');
+                    card.append(front, back);
+                    $('#board').append(card);
                 });
-              }
+            }
 
-              $("#board").on("click", ".card:not(.matched)", function () {
+            $('#board').on('click', '.card:not(.matched)', function() {
                 let card = $(this);
 
-                if (
-                  lock ||
-                  card.hasClass("flipped") ||
-                  (firstCard && firstCard.is(card))
-                ) {
-                  return;
+                if (lock || card.hasClass('flipped') || (firstCard && firstCard.is(card))) {
+                    return;
                 }
 
-                card.addClass("flipped");
-                card.attr("aria-pressed", "true");
+                card.addClass('flipped');
+                card.attr('aria-pressed', 'true');
 
                 if (!firstCard) {
-                  firstCard = card;
+                    firstCard = card;
                 } else {
-                  secondCard = card;
-                  lock = true;
+                    secondCard = card;
+                    lock = true;
 
-                  attempts++;
-                  $("#attempts").text("Intentos: " + attempts);
+                    attempts++;
+                    $('#attempts').text('Intentos: ' + attempts);
 
-                  if (firstCard.data("value") === secondCard.data("value")) {
-                    firstCard.addClass("matched");
-                    secondCard.addClass("matched");
-                    resetSelection();
-                    checkWin();
-                  } else {
-                    secondCard.one("transitionend", function () {
-                      firstCard
-                        .removeClass("flipped")
-                        .attr("aria-pressed", "false");
-                      secondCard
-                        .removeClass("flipped")
-                        .attr("aria-pressed", "false");
-                      resetSelection();
-                    });
-                  }
+                    if (firstCard.data('value') === secondCard.data('value')) {
+                        firstCard.addClass('matched');
+                        secondCard.addClass('matched');
+                        resetSelection();
+                        checkWin();
+                    } else {
+                        secondCard.one('transitionend', function() {
+                            firstCard.removeClass('flipped').attr('aria-pressed', 'false');
+                            secondCard.removeClass('flipped').attr('aria-pressed', 'false');
+                            resetSelection();
+                        });
+                    }
                 }
-              });
+            });
 
-              function resetSelection() {
+            function resetSelection() {
                 firstCard = null;
                 secondCard = null;
                 lock = false;
-              }
+            }
 
-              function checkWin() {
-                if ($(".matched").length === 12) {
-                  $("#win-message").text(
-                    "¡Ganaste en " + attempts + " intentos!"
-                  );
-                  $("#win-modal").show();
+            function checkWin() {
+                if ($('.matched').length === 12) {
+                    $('#win-message').text('¡Ganaste en ' + attempts + ' intentos!');
+                    $('#win-modal').show();
                 }
-              }
+            }
 
-              $("#reset-button, #restart-from-win").on("click", initGame);
+            $('#reset-button, #restart-from-win').on('click', initGame);
 
-              initGame();
-            });
-          </script>
-        </body>
-        <!-- </html> -->
-      </section>
-    </main>
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script>
-      $(document).ready(function () {});
+            initGame();
+        });
     </script>
-  </body>
+</body>
 </html>
