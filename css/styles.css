@@ -124,3 +124,13 @@ main {
     }
   }
 }
+
+body.typescript {
+  background-color: #2af;
+  background-image: url(../images/logo-ts.svg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  
+}
