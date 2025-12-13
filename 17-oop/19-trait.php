@@ -26,7 +26,7 @@ class Deportment {
 }
 
 $h1 = new Deportment();
-$h1->showHello('Juan David');
+$h1->showHello('Juan Carlos');
 $h1->showAdso(2929061);
 $h1->showDeportment('Caldas');
 
